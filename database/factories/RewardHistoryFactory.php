@@ -19,7 +19,7 @@ class RewardHistoryFactory extends Factory
         return [
             'reward_id' => "",
             'user_id' => '',
-            'status' => fake()->randomElement(['pending', 'approve', 'rejected']),
+            'status' => fake()->randomElement(['pending', 'approved', 'rejected']),
         ];
     }
 }
