@@ -1,19 +1,29 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="fixed top-0 left-0 right-0 bg-white border-b border-gray-100 z-50">
+
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                    <a href="{{ route('beranda') }}">
+                        <img src="img/logo-jelantah-hunter.png" alt="logo" class="h-14 mt-1 w-auto">
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('beranda')" :active="request()->routeIs('beranda')">
+                        {{ __('Beranda') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('tentang')" :active="request()->routeIs('tentang')">
+                        {{ __('Tentang') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('penjemputan')" :active="request()->routeIs('penjemputan')">
+                        {{ __('Penjemputan') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('hadiah')" :active="request()->routeIs('hadiah')">
+                        {{ __('Hadiah') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -23,7 +33,12 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
+                            <!-- Cek jika pengguna login -->
+                            @if(Auth::check())
+                                <div>{{ Auth::user()->name }}</div>
+                            @else
+                                <div>{{ __('Guest') }}</div>
+                            @endif
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -34,20 +49,30 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
+                        @if(Auth::check())
+                            <x-dropdown-link :href="route('profile.edit')">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
 
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
 
-                            <x-dropdown-link :href="route('logout')"
+                                <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        @else
+                            <!-- Tampilan ketika belum login -->
+                            <x-dropdown-link :href="route('login')">
+                                {{ __('Login') }}
                             </x-dropdown-link>
-                        </form>
+                            <x-dropdown-link :href="route('register')">
+                                {{ __('Register') }}
+                            </x-dropdown-link>
+                        @endif
                     </x-slot>
                 </x-dropdown>
             </div>
@@ -75,25 +100,40 @@
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                <!-- Cek jika pengguna login -->
+                @if(Auth::check())
+                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                @else
+                    <div class="font-medium text-base text-gray-800">Guest</div>
+                @endif
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
-
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                @if(Auth::check())
+                    <x-responsive-nav-link :href="route('profile.edit')">
+                        {{ __('Profile') }}
                     </x-responsive-nav-link>
-                </form>
+
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <x-responsive-nav-link :href="route('logout')"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-responsive-nav-link>
+                    </form>
+                @else
+                    <!-- Tampilan ketika belum login -->
+                    <x-responsive-nav-link :href="route('login')">
+                        {{ __('Login') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('register')">
+                        {{ __('Register') }}
+                    </x-responsive-nav-link>
+                @endif
             </div>
         </div>
     </div>

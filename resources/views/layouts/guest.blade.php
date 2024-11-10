@@ -16,9 +16,9 @@
     </head>
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+            <div class="shrink-0 flex items-center">
+                <a href="{{ route('beranda') }}">
+                    <img src="img/logo-jelantah-hunter.png" alt="logo" class="h-60 mt-1 w-auto mx-auto">
                 </a>
             </div>
 
