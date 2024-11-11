@@ -10,14 +10,16 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('order_histories', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('order_id');
-            $table->foreign('order_id')->references('id')->on('orders');
-            $table->string('title');
-            $table->string('message');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('order_histories')) {
+            Schema::create('order_histories', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('order_id');
+                $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+                $table->string('title');
+                $table->string('message');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

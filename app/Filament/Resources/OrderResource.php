@@ -39,26 +39,31 @@ class OrderResource extends Resource
     }
 
     public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                TextColumn::make('name')->label('Nama Produk')->default('Minyak Jelantah')->disabled(),
-                TextColumn::make('quantity'),
-                TextColumn::make('status')->badge(),
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
-    }
+{
+    return $table
+        ->columns([
+            TextColumn::make('name')->label('Nama Produk')->default('Minyak Jelantah')->disabled(),
+            TextColumn::make('quantity'),
+            TextColumn::make('status')->badge(),
+            TextColumn::make('created_at')
+                ->label('Tanggal Permintaan')
+                ->sortable()
+                ->dateTime('Y-m-d H:i:s'), // Format tanggal dan waktu yang diinginkan
+        ])
+        ->defaultSort('created_at', 'desc') // Urutkan berdasarkan created_at, dari yang terbaru
+        ->filters([
+            // Add filters if needed
+        ])
+        ->actions([
+            Tables\Actions\EditAction::make(),
+            Tables\Actions\DeleteAction::make(),
+        ])
+        ->bulkActions([
+            Tables\Actions\BulkActionGroup::make([
+                Tables\Actions\DeleteBulkAction::make(),
+            ]),
+        ]);
+}
 
     public static function infolist(Infolist $infolist): Infolist
     {

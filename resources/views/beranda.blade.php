@@ -41,8 +41,8 @@
             <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5">
                 <!-- Teks Judul -->
                 <div class="text-left align-center">
-                    <h2 class="text-4xl font-medium text-gray-800">Kenapa harus jual di</h2>
-                    <h2 class="text-4xl font-medium text-orange-500">Jelantah Hunter?</h2>
+                    <h2 class="text-5xl font-medium text-gray-800 pt-5">Kenapa harus jual di</h2>
+                    <h2 class="text-5xl font-medium text-orange-500 pt-3">Jelantah Hunter?</h2>
                 </div>
                 <!-- Daftar Alasan dengan Bullet Points -->
                 <ul class="list-disc list-inside text-neutral-600 text-lg">
@@ -84,7 +84,7 @@
     <h2 class="text-center text-4xl text-orange-500 font-medium mb-10">Galeri</h2>
     <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
         <!-- Card 1 -->
-        <div class="bg-white rounded-lg overflow-hidden">
+        <div class="bg-white rounded-lg overflow-hidden shadow-md">
             <img onclick="openModal('{{ asset('img/gambar4.jpg') }}')" src="{{ asset('img/gambar4.jpg') }}" alt="minyak jelantah" class="w-full h-48 object-cover cursor-pointer">
             <div class="p-5">
                 <h3 class="text-lg font-semibold text-gray-700">Gambar 1</h3>
@@ -93,7 +93,7 @@
         </div>
 
         <!-- Card 2 -->
-        <div class="bg-white rounded-lg overflow-hidden">
+        <div class="bg-white rounded-lg overflow-hidden shadow-md">
             <img onclick="openModal('{{ asset('img/gambar5.jpg') }}')" src="{{ asset('img/gambar5.jpg') }}" alt="minyak jelantah" class="w-full h-48 object-cover cursor-pointer">
             <div class="p-5">
                 <h3 class="text-lg font-semibold text-gray-700">Gambar 2</h3>
@@ -102,7 +102,7 @@
         </div>
 
         <!-- Card 3 -->
-        <div class="bg-white rounded-lg overflow-hidden">
+        <div class="bg-white rounded-lg overflow-hidden shadow-md">
             <img onclick="openModal('{{ asset('img/gambar6.jpg') }}')" src="{{ asset('img/gambar6.jpg') }}" alt="minyak jelantah" class="w-full h-48 object-cover cursor-pointer">
             <div class="p-5">
                 <h3 class="text-lg font-semibold text-gray-700">Gambar 3</h3>
