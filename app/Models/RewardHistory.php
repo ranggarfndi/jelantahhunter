@@ -8,12 +8,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class RewardHistory extends Model
 {
-    /** @use HasFactory<\Database\Factories\RewardHistoryFactory> */
     use HasFactory;
 
     protected $guarded = [''];
 
-    public function reward(): BelongsTo
+    // Relasi dengan User
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    // Relasi dengan Reward
+    public function reward()
     {
         return $this->belongsTo(Reward::class);
     }

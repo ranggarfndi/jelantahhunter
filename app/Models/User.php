@@ -60,4 +60,10 @@ class User extends Authenticatable
     {
         return $this->hasRole('super_admin') || $this->hasRole('staff');
     }
+
+    // Relasi dengan OrderHistory
+    public function orderHistories()
+    {
+        return $this->hasMany(OrderHistory::class);
+    }
 }
